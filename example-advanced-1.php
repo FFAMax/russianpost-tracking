@@ -11,14 +11,7 @@ try
     $client = new RussianPostAPI();	//init the client
 
 	$data = $client->getOperationHistory($TRACKNUM);	//fetch info
-	
-	foreach ($data as $t1) {
-		$tmp_arr = NULL;
-		foreach ($t1 as $key => $t2) {
-			$tmp_arr[$key] = $t2;
-		}
-		$data_a[] = $tmp_arr;
-	}
+	$data = json_decode(json_encode($data), 1);
 }
 catch(RussianPostException $e) 
 {
@@ -31,7 +24,7 @@ catch(RussianPostException $e)
 		die();
 	}
 }
-print_r ($data_a);
+print_r ($data);
 
 /*
 RESULT OUTPUT WILL BE LIKE THIS:
